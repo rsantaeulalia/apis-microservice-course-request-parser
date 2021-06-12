@@ -32,5 +32,8 @@ var listener = app.listen(process.env.PORT, function () {
 
 // your first API endpoint... 
 app.get("/api/whoami", function (req, res) {
-  res.json({request: req});
+  res.json({
+    'ipaddress': req.header('X-Forwarded-For'),
+    'language': req.header('accept-language'),
+    'software': req.header('user-agent')});
 });
